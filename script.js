@@ -17,9 +17,9 @@ Once again, happy birthday, my favorite girl. I hope your day is as beautiful as
 
 I love youu, more than words can say. 💕🌸`,
   photos: [
-    'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=80'
+    'images/foto1.jpg',
+    'images/foto2.jpg',
+    'images/foto3.jpg'
   ]
 };
 
