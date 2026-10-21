@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Spesial Untukmu ❤️ | Selamat Ulang Tahun</title>
+  <meta name="description" content="Hadiah dan kejutan ulang tahun interaktif spesial penuh cinta untuk Zahra Cantika Putri.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Floating Hearts Background Container -->
+  <div id="hearts-container" class="hearts-container" aria-hidden="true"></div>
+
+  <!-- Ambient Audio Controls -->
+  <div class="audio-control-bar">
+    <button id="music-toggle-btn" class="music-btn" title="Nyalakan/Matikan Musik">
+      <span class="music-icon">🎵</span>
+      <span class="music-label">Putar Musik</span>
+    </button>
+    <button id="edit-config-btn" class="config-btn" title="Sesuaikan Nama & Pesan">
+      <span class="config-icon">⚙️</span>
+      <span class="config-label">Edit Teks</span>
+    </button>
+  </div>
+
+  <!-- Main Container -->
+  <main class="app-container">
+    
+    <!-- STEP 1: Kotak Hadiah Misteri Belum Dibuka -->
+    <section id="step-1" class="step-card active" data-step="1">
+      <div class="step-badge">
+        <span class="sparkle-icon">✨</span> Langkah 1 dari 6: Sebuah Kejutan
+      </div>
+      <h1 class="step-title">Hai Cantik, Ada Sesuatu Buat Kamu 🎁</h1>
+      <p class="step-subtitle">
+        Sebuah kotak kecil penuh dengan rasa dan ketulusan. Ketuk kotaknya untuk membukanya!
+      </p>
+
+      <div class="gift-box-wrapper" id="gift-box-interactive" role="button" tabindex="0" aria-label="Buka Kotak Kado">
+        <div class="gift-box shake-animation">
+          <div class="gift-lid">
+            <div class="gift-ribbon-vertical"></div>
+            <div class="gift-ribbon-bow">
+              <span class="bow-left"></span>
+              <span class="bow-right"></span>
+              <span class="bow-center">❤️</span>
+            </div>
+          </div>
+          <div class="gift-body">
+            <div class="gift-ribbon-vertical"></div>
+            <div class="gift-ribbon-horizontal"></div>
+            <div class="gift-tag-badge">For You</div>
+          </div>
+        </div>
+        <div class="gift-shadow"></div>
+      </div>
+
+      <div class="action-footer">
+        <button id="btn-open-gift" class="btn-primary pulse-btn">
+          <span>Buka Kotak Kado 🎁</span>
+        </button>
+        <p class="hint-text">⚡ Klik kado atau tombol di atas untuk membuka</p>
+      </div>
+    </section>
+
+    <!-- STEP 2: Kotak Misteri Terbuka -->
+    <section id="step-2" class="step-card" data-step="2">
+      <div class="step-badge">
+        <span class="sparkle-icon">🪄</span> Langkah 2 dari 6: Kotak Misteri
+      </div>
+      <h1 class="step-title">Kejutan Untukmu Terbuka! 🎉</h1>
+      <p class="step-subtitle">
+        Di dalamnya tersimpan pesan tulus yang ditulis dari lubuk hati terdalam.
+      </p>
+
+      <div class="opened-gift-wrapper">
+        <div class="opened-gift-box">
+          <div class="opened-lid floating-lid">
+            <div class="gift-ribbon-vertical"></div>
+            <div class="gold-coin coin-1">🪙</div>
+            <div class="gold-coin coin-2">🪙</div>
+            <div class="gold-coin coin-3">🪙</div>
+            <div class="lid-bow">🎀</div>
+          </div>
+          <div class="gift-body glow-aura">
+            <div class="heart-seal-large">❤️</div>
+            <div class="gift-ribbon-vertical"></div>
+            <div class="gift-ribbon-horizontal"></div>
+          </div>
+        </div>
+        <div class="gift-shadow"></div>
+      </div>
+
+      <div class="action-footer">
+        <button id="btn-to-letter" class="btn-primary">
+          <span>Baca Surat Spesial</span>
+          <span class="arrow-icon">➔</span>
+        </button>
+        <p class="hint-text">💌 Masuk ke pesan yang dirangkai khusus untukmu</p>
+      </div>
+    </section>
+
+    <!-- STEP 3: Amplop & Surat Dari Hati -->
+    <section id="step-3" class="step-card" data-step="3">
+      <div class="step-badge">
+        <span class="sparkle-icon">🪄</span> Langkah 3 dari 6: Surat Dari Hati
+      </div>
+      <h1 class="step-title recipient-heading">
+        Untuk Kamu yang Paling Berharga ( <span class="recipient-name">Zahra Cantika Putri</span> )
+      </h1>
+
+      <!-- Sub-view 3A: Amplop Tertutup -->
+      <div id="envelope-sealed-container" class="envelope-sealed-card">
+        <div class="stamp-box">
+          <span class="stamp-title">POST</span>
+          <span class="stamp-heart">❤️</span>
+          <span class="stamp-sub">LOVE</span>
+        </div>
+        
+        <div class="envelope-icon-circle">
+          <svg viewBox="0 0 24 24" class="svg-mail-icon" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="4" width="20" height="16" rx="3"></rect>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+          </svg>
+        </div>
+
+        <h2 class="envelope-sealed-title">Surat Tertutup Khusus Untukmu</h2>
+        <p class="envelope-sealed-sub">
+          Dikirim dengan segenap rasa oleh <strong class="sender-name">R</strong>
+        </p>
+
+        <button id="btn-open-envelope" class="btn-envelope">
+          <span>✉️ Buka Segel Amplop 💌</span>
+        </button>
+      </div>
+
+      <!-- Sub-view 3B: Surat Terbuka (Letter Opened) -->
+      <div id="letter-content-container" class="letter-opened-card hidden">
+        <div class="letter-header">
+          <span class="letter-heart-icon">❤️</span>
+          <span class="letter-greeting">Untuk My Princess tercinta</span>
+        </div>
+
+        <div class="letter-body-text" id="letter-text-rendered">
+          <p>
+            Selamat Ulang Tahun Cintaakuu, Semoga panjang umur, sehat selalu, and semoga di umur kamu yang sekarang, semua hal hal baik datang satu per satu yaa cintaa.... semoga apa yang kamu impikan akan tercapai satu per satu
+          </p>
+          <p>
+            Makasih yaa udah hadir di dunia ini. Aku seneng banget, bisa kenal sama kamu. Semoga senyum manis kamu nggak pernah hilang, dan semoga aku bisa terus jadi salah satu alasan di balik senyum itu.
+          </p>
+          <p>
+            Once again, happy birthday, my favorite girl. I hope your day is as beautiful as you are. 🥹💐💖
+          </p>
+          <p>
+            I love youu, more than words can say. 💕🌸
+          </p>
+        </div>
+
+        <div class="letter-footer">
+          <div class="letter-sign-off">Dengan segenap cinta,</div>
+          <div class="letter-signature sender-name">R</div>
+          <div class="letter-made-with">Dibuat penuh cinta 💖</div>
+        </div>
+
+        <div class="action-footer mt-4">
+          <button id="btn-to-gallery" class="btn-primary">
+            <span>Lihat Galeri Kenangan</span>
+            <span class="arrow-icon">➔</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 4: Galeri Kenangan -->
+    <section id="step-4" class="step-card" data-step="4">
+      <div class="step-badge">
+        <span class="sparkle-icon">🪄</span> Langkah 4 dari 6: Galeri Kenangan
+      </div>
+      <h1 class="step-title">Momen Manis Kita 📁</h1>
+      <p class="step-subtitle">
+        Setiap senyuman, canda, dan cerita yang terukir abadi dalam ingatan.
+      </p>
+
+      <div class="gallery-grid" id="polaroid-gallery">
+        <!-- Polaroid Card 1 -->
+        <div class="polaroid-card tilt-left" data-index="1">
+          <div class="washi-tape"></div>
+          <div class="polaroid-photo-wrapper" title="Klik untuk ganti foto">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&auto=format&fit=crop&q=80" alt="Kenangan 1" class="polaroid-img" id="img-slot-1">
+            <div class="change-photo-overlay">
+              <span>📷 Ganti Foto</span>
+            </div>
+            <input type="file" class="photo-file-input" id="file-input-1" accept="image/*" style="display: none;">
+            <button class="photo-like-btn" title="Sukai foto" aria-label="Sukai foto">
+              <span class="heart-symbol">🤍</span>
+            </button>
+          </div>
+          <div class="polaroid-caption">
+            <p class="caption-handwritten" id="caption-slot-1">Kenangan terindah bersamamu 💖</p>
+            <span class="caption-tag">MOMEN SPESIAL</span>
+          </div>
+        </div>
+
+        <!-- Polaroid Card 2 -->
+        <div class="polaroid-card tilt-straight" data-index="2">
+          <div class="washi-tape"></div>
+          <div class="polaroid-photo-wrapper" title="Klik untuk ganti foto">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80" alt="Kenangan 2" class="polaroid-img" id="img-slot-2">
+            <div class="change-photo-overlay">
+              <span>📷 Ganti Foto</span>
+            </div>
+            <input type="file" class="photo-file-input" id="file-input-2" accept="image/*" style="display: none;">
+            <button class="photo-like-btn liked" title="Sukai foto" aria-label="Sukai foto">
+              <span class="heart-symbol">❤️</span>
+            </button>
+          </div>
+          <div class="polaroid-caption">
+            <p class="caption-handwritten" id="caption-slot-2">Senyum favorit yang bikin adem 🥰</p>
+            <span class="caption-tag">MOMEN SPESIAL</span>
+          </div>
+        </div>
+
+        <!-- Polaroid Card 3 -->
+        <div class="polaroid-card tilt-right" data-index="3">
+          <div class="washi-tape"></div>
+          <div class="polaroid-photo-wrapper" title="Klik untuk ganti foto">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=600&auto=format&fit=crop&q=80" alt="Kenangan 3" class="polaroid-img" id="img-slot-3">
+            <div class="change-photo-overlay">
+              <span>📷 Ganti Foto</span>
+            </div>
+            <input type="file" class="photo-file-input" id="file-input-3" accept="image/*" style="display: none;">
+            <button class="photo-like-btn" title="Sukai foto" aria-label="Sukai foto">
+              <span class="heart-symbol">🤍</span>
+            </button>
+          </div>
+          <div class="polaroid-caption">
+            <p class="caption-handwritten" id="caption-slot-3">Selalu bahagia di setiap detik ✨</p>
+            <span class="caption-tag">MOMEN SPESIAL</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-footer">
+        <button id="btn-to-cake" class="btn-primary">
+          <span>Lanjut ke Kejutan Spesial</span>
+          <span class="arrow-icon">➔</span>
+        </button>
+        <p class="hint-text">🎂 Sudah saatnya meniup lilin ulang tahunmu!</p>
+      </div>
+    </section>
+
+    <!-- STEP 5: Tiup Lilin & Buat Harapanmu -->
+    <section id="step-5" class="step-card" data-step="5">
+      <div class="step-badge">
+        <span class="sparkle-icon">🪄</span> Langkah 5 dari 6: Kejutan Spesial
+      </div>
+      <h1 class="step-title">Tiup Lilin & Buat Harapanmu 🎂</h1>
+      <p class="step-subtitle">
+        Tutup matamu sejenak, bisikkan harapan terbaikmu dalam hati, lalu tiup lilin ini dengan penuh keyakinan bahwa semua impianmu akan terkabul.
+      </p>
+
+      <!-- Birthday Cake Section -->
+      <div class="cake-display-container">
+        <div class="birthday-cake" id="interactive-cake">
+          
+          <!-- Candles Layer -->
+          <div class="candles-wrapper">
+            <!-- Candle 1 -->
+            <div class="candle candle-yellow" id="candle-1">
+              <div class="flame" id="flame-1">
+                <div class="flame-glow"></div>
+              </div>
+              <div class="smoke" id="smoke-1"></div>
+              <div class="wick"></div>
+              <div class="candle-stick"></div>
+            </div>
+
+            <!-- Candle 2 (Center) -->
+            <div class="candle candle-pink" id="candle-2">
+              <div class="flame" id="flame-2">
+                <div class="flame-glow"></div>
+              </div>
+              <div class="smoke" id="smoke-2"></div>
+              <div class="wick"></div>
+              <div class="candle-stick"></div>
+            </div>
+
+            <!-- Candle 3 -->
+            <div class="candle candle-purple" id="candle-3">
+              <div class="flame" id="flame-3">
+                <div class="flame-glow"></div>
+              </div>
+              <div class="smoke" id="smoke-3"></div>
+              <div class="wick"></div>
+              <div class="candle-stick"></div>
+            </div>
+          </div>
+
+          <!-- Cake Top Tier -->
+          <div class="cake-tier cake-tier-top">
+            <div class="frosting-drops">
+              <span></span><span></span><span></span><span></span><span></span>
+            </div>
+            <div class="cake-tier-text">Special Wishes</div>
+          </div>
+
+          <!-- Cake Bottom Tier -->
+          <div class="cake-tier cake-tier-bottom">
+            <div class="tier-banner">
+              <span class="heart-mini">💖</span>
+              <span class="cake-recipient-tag">MY PRINCESS</span>
+              <span class="heart-mini">💖</span>
+            </div>
+          </div>
+
+          <!-- Cake Plate / Stand -->
+          <div class="cake-plate"></div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="action-footer">
+        <div id="blow-action-container">
+          <button id="btn-blow-candle" class="btn-primary blow-btn pulse-btn">
+            <span>💨 Tiup Lilin Sekarang 🕯️ ✨</span>
+          </button>
+          <p class="hint-text">⚡ Tekan tombol di atas untuk meniup lilin dan membuat permohonan!</p>
+        </div>
+
+        <div id="after-blow-container" class="hidden celebration-pop">
+          <div class="wish-granted-banner">
+            <span class="sparkle-big">🎉</span>
+            <h3>Semoga Semua Impianmu Terkabul! ✨</h3>
+            <p>Doa tulus selalu menyertai setiap langkahmu cintaku.</p>
+          </div>
+          <button id="btn-to-final" class="btn-primary mt-3">
+            <span>Lihat Pesan Terakhir</span>
+            <span class="arrow-icon">➔</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- STEP 6: Penutup & Pesan Terakhir -->
+    <section id="step-6" class="step-card" data-step="6">
+      <div class="step-badge">
+        <span class="sparkle-icon">🪄</span> Langkah 6 dari 6: Doa & Cinta Abadi
+      </div>
+      <h1 class="step-title">Happy Birthday, My Beloved! 💖</h1>
+      <p class="step-subtitle">
+        Terima kasih telah menjadi bagian paling indah dalam hidupku.
+      </p>
+
+      <div class="final-card">
+        <div class="final-avatar-circle">
+          <span>👸</span>
+        </div>
+        <h2 class="final-wish-title">Untuk <span class="recipient-name">Zahra Cantika Putri</span></h2>
+        
+        <div class="final-quote-box">
+          <p class="final-quote-text">
+            "Semoga hari-harimu selalu dipenuhi tawa ceria, kesehatan, keberkahan berlimpah, dan kebahagiaan tanpa akhir. Aku akan selalu ada di sini untuk mendukung dan mencintaimu."
+          </p>
+          <span class="final-quote-author">— Dari <strong class="sender-name">R</strong> dengan segenap cinta</span>
+        </div>
+
+        <!-- Interactive Reaction / WA Share -->
+        <div class="final-actions">
+          <a id="btn-whatsapp-reply" href="https://wa.me/?text=Makasih+banyak+yaang+buat+kejutannya!+Aku+suka+bangett+%F0%9F%A5%BA%F0%9F%92%96" target="_blank" rel="noopener noreferrer" class="btn-whatsapp">
+            <span>💬 Kirim Balasan ke Dia di WhatsApp</span>
+          </a>
+
+          <button id="btn-replay-journey" class="btn-secondary">
+            <span>🔄 Ulangi Dari Awal</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal Edit / Kustomisasi Data (Nama, Pesan, dsb) -->
+  <div id="config-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 id="modal-title">⚙️ Sesuaikan Nama & Pesan</h3>
+        <button id="btn-close-modal" class="close-btn" aria-label="Tutup Modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="input-recipient">Nama Pasangan / Yang Ulang Tahun:</label>
+          <input type="text" id="input-recipient" value="Zahra Cantika Putri" placeholder="Contoh: Zahra Cantika Putri">
+        </div>
+        <div class="form-group">
+          <label for="input-sender">Nama / Inisial Pengirim:</label>
+          <input type="text" id="input-sender" value="R" placeholder="Contoh: R / Rizky">
+        </div>
+        <div class="form-group">
+          <label for="input-wa">Nomor WhatsApp Pengirim (Opsional, untuk tombol balas):</label>
+          <input type="text" id="input-wa" placeholder="Contoh: 628123456789">
+        </div>
+        <div class="form-group">
+          <label for="input-letter">Isi Surat Cinta (Paragraf):</label>
+          <textarea id="input-letter" rows="6"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Foto Kenangan (Bisa upload langsung dari HP / Laptop):</label>
+          <div class="modal-photo-inputs">
+            <div class="photo-input-item">
+              <span>Foto 1:</span>
+              <input type="file" id="modal-file-1" accept="image/*" class="modal-file-picker">
+            </div>
+            <div class="photo-input-item">
+              <span>Foto 2:</span>
+              <input type="file" id="modal-file-2" accept="image/*" class="modal-file-picker">
+            </div>
+            <div class="photo-input-item">
+              <span>Foto 3:</span>
+              <input type="file" id="modal-file-3" accept="image/*" class="modal-file-picker">
+            </div>
+          </div>
+          <small class="hint-small">💡 Tips: Anda juga bisa langsung klik pada kartu foto di Langkah 4 untuk menggantinya!</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button id="btn-reset-default" class="btn-outline">Reset Default</button>
+        <button id="btn-save-config" class="btn-primary">Simpan Perubahan ✨</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
